@@ -535,11 +535,11 @@ def sort_with_plas(
 
     with torch.inference_mode():
 
-        grid_indices = (
-            torch.arange(0, H * W, dtype=torch.int32, device=params.device)
-            .reshape(grid_shape)
-            .unsqueeze(0)
-        )
+        # grid_indices = (
+        #     torch.arange(0, H * W, dtype=torch.int32, device=params.device)
+        #     .reshape(grid_shape)
+        #     .unsqueeze(0)
+        # )
 
         for radius in radii:
             # compute filtersize that is smaller than any side of the grid

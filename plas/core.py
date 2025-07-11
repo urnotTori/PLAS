@@ -494,6 +494,7 @@ def sort_with_plas(
     border_type_y="reflect",
     seed=None,
     verbose=False,
+    grid_indices=None,
 ):
     """ Sorts a set of parameters in a 2xn grid using the Parallel Linear Assignment Sorting (PLAS) algorithm.
 
@@ -503,6 +504,12 @@ def sort_with_plas(
                                x defaults to 'circular', y defaults to 'reflect': this allows for seamless resampling 1D data into square 2D grids.
         min_blur_radius: Last/smallest blur radius to apply before stopping sort. Defaults to 1 for optimal sort. Increase for earlier stops.
     """
+
+    #################
+    C, H, W = params.shape
+    if grid_indices is None:
+        grid_indices = torch.arange(H * W, dtype=torch.long, device=params.device).view(1, H, W)
+    #####################
 
     if seed is not None:
         torch.manual_seed(seed)

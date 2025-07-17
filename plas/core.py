@@ -508,7 +508,8 @@ def sort_with_plas(
     #################
     C, H, W = params.shape
     if grid_indices is None:
-        grid_indices = torch.arange(H * W, dtype=torch.long, device=params.device).view(1, H, W)
+        # grid_indices = torch.arange(H * W, dtype=torch.long, device=params.device).view(1, H, W)
+        grid_indices = torch.arange(0, H * W, dtype=torch.long, device=params.device).reshape(grid_shape).unsqueeze(0)
     #####################
 
     if seed is not None:
